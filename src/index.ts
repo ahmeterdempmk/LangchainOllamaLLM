@@ -56,7 +56,7 @@ let vectorStore : MemoryVectorStore;
 
 // Endpoint to load text embeddings
 app.get('/loadTextEmbeddings', async (c) => {
-  // Metin dosyasının okunması
+  // Read text file
   const text = await getTextFile();
 
   // Text splitting settings
@@ -79,20 +79,20 @@ app.get('/loadTextEmbeddings', async (c) => {
 
 // Endpoint to load pdf embeddings
 app.get('/loadPdfEmbeddings', async (c) => {
-  // Metin dosyasının okunması
+  // Read pdf file
   const documents = await loadPdfFile();
 
   // Define vector db
   vectorStore = await MemoryVectorStore.fromDocuments(documents, embeddings);
 
   // Return success message
-  const response = {message: "Text embeddings loaded successfully."};
+  const response = {message: "PDF embeddings loaded successfully."};
   return c.json(response);
 })
 
 // Endpoint to ask question
 app.post('/ask',async (c) => {
-  // Gelen sorunun alınması
+  // Get question
   const { question } = await c.req.json();
 
   // Checking whether the vector database is loaded or not
