@@ -120,7 +120,7 @@ Answer:
   const retrievalChain = await createRetrievalChain({
     combineDocsChain: documentChain,
     retriever:vectorStore.asRetriever({
-      k:3 // En benzer 3 dokümanın alınması
+      k:3 // Get the 3 most similar documents
     })
   });
 
